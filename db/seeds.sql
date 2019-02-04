@@ -1,10 +1,16 @@
 USE burgers_db;
 
-INSERT INTO burgers (burger_name, devoured)
-VALUES ("Veggie Burger", false);
+INSERT INTO burgers (name, devoured)
+VALUES ('Veggie Burger', true);
+INSERT INTO burgers (name, devoured)
+VALUES ('Turkey Burger', true);
+INSERT INTO burgers (name, devoured)
+VALUES ('Cheese Burger', true);
 
-INSERT INTO burgers (burger_name, devoured)
-VALUES ("Turkey Burger", false);
-
-INSERT INTO burgers (burger_name, devoured)
-VALUES ("Cheese Burger", false);
+-- TODO get these to show up on the redered page
+INSERT INTO burgers (name, devoured)
+VALUES ('Blue Cheese Burger');
+INSERT INTO burgers (name, devoured)
+VALUES ('Mushroom Burger');
+INSERT INTO burgers (name, devoured)
+VALUES ('Jalapelno Burger');

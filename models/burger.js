@@ -1,5 +1,5 @@
 const orm = require('../config/orm.js');
-var Sequelize = require("sequelize");
+// var Sequelize = require("sequelize");
 
 let burger = {
     selectAll: function(cb) {

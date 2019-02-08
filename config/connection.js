@@ -1,19 +1,19 @@
-var mysql = require("mysql");
+const mysql = require('mysql');
 
-var connection = mysql.createConnection({
-    host: "localhost",
+const connection = mysql.createConnection({
+    database: 'burgers_db',
+    host: 'localhost',
+    password: 'princess20',
     port: 3306,
-    user: "root",
-    password: "princess20",
-    database: "burgers_db"
+    user: 'root',
 });
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
+connection.connect(error => {
+    if (error) {
+        console.error(`error connecting: ${err.stack}`);
         return;
     }
-    console.log("connected as id " + connection.threadId);
+    console.log(`connected as id ${connection.threadId}`);
 });
 
 module.exports = connection;

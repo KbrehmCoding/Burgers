@@ -1,39 +1,45 @@
-var express = require("express");
+const express = require('express');
 
-var router = express.Router();
+const router = express.Router();
 
-var burger = require("../models/burger.js");
+const burger = require('../models/burger');
 
-router.get("/", function(req, res) {
-    burger.selectAll(function(data) {
-        let handlebarsObj = {
-            burgers: data
+router.get('/', (req, res) => {
+    burger.selectAll(data => {
+        const handlebarsObj = {
+            burgers: data,
         };
         console.log(handlebarsObj);
-        res.render("index", handlebarsObj);
+        res.render('index', handlebarsObj);
     });
 });
 
-router.post("/api/burgers", function(req, res) {
-    burger.insertOne(req.body.name, function(result) {
+router.get('/api/burgers', (req, res) => {
+    burger.selectAll(data => {
+        res.json(data);
+    });
+});
 
+router.post('/api/burgers', (req, res) => {
+    burger.insertOne(req.body.name, result => {
         console.log(result);
         res.json({ id: result.insertId });
     });
 });
 
-router.put("/api/burgers/:id", function(req, res) {
-    let burger_id = req.params.id;
-    console.log("ID of burger to be updated is " + burger_id);
-    burger.updateOne({
-        eaten: true
-    }, burger_id, function(result) {
-        if (result.changedRows == 0) {
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
+router.put('/api/burgers/:id', (req, res) => {
+    const burgerId = req.params.id;
+    console.log(`ID of burger to be updated is ${burgerId}`);
+    burger.updateOne(
+        burgerId,
+        result => {
+            if (result.changedRows === 0) {
+                res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
         }
-    });
+    );
 });
 
 module.exports = router;

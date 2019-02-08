@@ -1,8 +1,8 @@
 
 #burgersReadyContainer {
-    float: left
+    float: left;
 }
 
-#burgersDevoured {
-    float: right
+#devouredBurgers {
+    float: right;
 }

@@ -2,7 +2,6 @@
     <div class="row center-align">
         <h1>Eat The Burger!</h1>
     </div>
-
     <div class="row">
         <div class="col m6 center-align" id="burgersReadyContainer">
             <h4>Burgers Ready</h4>
@@ -10,7 +9,7 @@
                 {{#each burgers}}
                     {{#unless devoured}}
                         <li>
-                            {{burger_name}}
+                            {{name}}
                             <button class="btn-small change-eaten" data-id="{{id}}">Devour It!</button>
                         </li>
                     {{/unless}}
@@ -22,7 +21,7 @@
             <ul>
                 {{#each burgers}}
                     {{#if devoured}}
-                        <li><s>{{burger_name}}</s></li>
+                        <li><s>{{name}}</s></li>
                     {{/if}}
                 {{/each}}
             </ul>
@@ -32,7 +31,7 @@
         <h4>Add a Burger!</h4>
         <form class="create-form">
             <div class="form-group">
-                <input type="text" id="addBurger" name="burger_name">
+                <input type="text" id="addBurger" name="name">
             </div>
             <button class="btn" type="submit">Submit</button>
             <p>Make a request for a new burger!</p>

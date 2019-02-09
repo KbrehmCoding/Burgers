@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const burger = require('../models/burger');
+const burger = require('../models/burger.js');
 
 router.get('/', (req, res) => {
     burger.selectAll(data => {
@@ -14,14 +14,15 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/api/burgers', (req, res) => {
-    burger.selectAll(data => {
-        res.json(data);
-    });
-});
+// router.get('/api/burgers', (req, res) => {
+//     burger.selectAll(data => {
+//         res.json(data);
+//     });
+// });
 
 router.post('/api/burgers', (req, res) => {
-    burger.insertOne(req.body.name, result => {
+    burger.insertOne(req.body.name, function(result) {
+        console.log("Ran POST route to add one burger to 'burgers' table.");
         console.log(result);
         res.json({ id: result.insertId });
     });

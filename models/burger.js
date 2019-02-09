@@ -1,26 +1,27 @@
-var orm = require("../config/orm.js");
+const connection = require('../config/connection');
 
-var burger = {
-    all: function (cb) {
-        orm.all("burgers", function (res) {
-            cb(res);
+let orm = {
+    selectAll: cb => {
+        let query = 'SELECT * FROM burgers';
+        connection.query(query, (error, result) => {
+            if (error) throw error;
+            cb(result);
         });
     },
-    create: function (cols, vals, cb) {
-        orm.create("burgers", cols, vals, function (res) {
-            cb(res);
+    insertOne: (name, cb) => {
+        let query = 'INSERT INTO burgers (name, devoured) VALUES (?, false)';
+        connection.query(query, name, function(error, result) {
+            if (error) throw error;
+            cb(result);
         });
     },
-    update: function (objColVals, condition, cb) {
-        orm.update("burgers", objColVals, condition, function (res) {
-            cb(res);
+    updateOne: (id, cb) => {
+        let query = 'UPDATE burgers SET devoured = true WHERE id = ?';
+        connection.query(query, id, (error, result) => {
+            if (error) throw error;
+            cb(result);
         });
     },
-    delete: function (condition, cb) {
-        orm.delete("burgers", condition, function (res) {
-            cb(res);
-        });
-    }
 };
 
-module.exports = burger;
+module.exports = orm;

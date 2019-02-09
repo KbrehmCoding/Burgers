@@ -1,38 +1,39 @@
-<h1>Burgers!</h1>
-
-<h2>Devoured Burgers!</h2>
-
-<ul>
-{{#each burgers}}
-    {{#unless ready}}
-    {{> burgers/burger-block devoured=true}}
-    {{/unless}}
-{{/each}}
-</ul>
-
-<h2>Burgers that are ready!</h2>
-
-<ul>
-{{#each burgers}}
-    {{#if ready}}
-    {{> burgers/burger-block devoured=false}}
-    {{/if}}
-{{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-    <div class="form-group">
-        <label for="bu">Burger Name:</label>
-        <input type="text" id="bu" name="name">
+<div class="container">
+    <div class="row center-align">
+        <h1>Eat The Burger!</h1>
     </div>
-
-    <div class="form-group">
-        <label for="read">ready?</label><br>
-        <input type="radio" name="ready" value="1" checked> Ready!<br>
-        <input type="radio" name="ready" value="0"> Devoured!
+    <div class="row">
+        <div class="col m6 center-align" id="burgersReadyContainer">
+            <h4>Burgers Ready</h4>
+            <ul>
+                {{#each burgers}}
+                    {{#unless devoured}}
+                        <li>
+                            {{name}}
+                            <button class="btn-small change-devoured" data-id="{{id}}">Devour It!</button>
+                        </li>
+                    {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="col m6 center-align" id="devouredBurgers">
+            <h4>Burgers Devoured</h4>
+            <ul>
+                {{#each burgers}}
+                    {{#if devoured}}
+                        <li><s>{{name}}</s></li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
     </div>
-
-    <button type="submit">Add Burger</button>
-</form>
+    <div class="row center-align">
+        <h4>Add a Burger!</h4>
+        <form class="create-form">
+            <input type="text" id="addBurger" name="name">
+            {{!-- <textarea type="text" name="addBurger" id="addBurger"></textarea> --}}
+            <button class="btn-small" type="submit">Submit</button>
+            <p>Make a request for a new burger!</p>
+        </form>
+    </div>
+</div>

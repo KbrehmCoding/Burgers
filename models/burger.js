@@ -10,7 +10,7 @@ let orm = {
     },
     insertOne: (name, cb) => {
         let query = 'INSERT INTO burgers (name, devoured) VALUES (?, false)';
-        connection.query(query, name, function(error, result) {
+        connection.query(query, name, (error, result) => {
             if (error) throw error;
             cb(result);
         });

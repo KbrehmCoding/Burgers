@@ -1,17 +1,18 @@
 const mysql = require('mysql');
-const env = require(".env");
-let connection
+require('dotenv').config();
 
-if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
-  } else {
+let connection;
+
+if (process.env.MYSQL_DSN) {
+    connection = mysql.createConnection(process.env.MYSQL_DSN);
+} else {
     connection = mysql.createConnection({
+      database: 'burgers_db',
       host: 'localhost',
-      user: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
-      database: 'burgers_db'
-    })
-  }
+      user: process.env.MYSQL_USER,
+    });
+}
 
 connection.connect(error => {
     if (error) {

@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
 // });
 
 router.post('/api/burgers', (req, res) => {
-    burger.insertOne(req.body.name, function(result) {
-        console.log("Ran POST route to add one burger to 'burgers' table.");
+    burger.insertOne(req.body.name, result => {
+        console.log('Ran POST route to add one burger to \'burgers\' table.');
         console.log(result);
         res.json({ id: result.insertId });
     });

@@ -3,8 +3,8 @@ require('dotenv').config({ silent: true });
 
 let connection;
 
-if (process.env.MYSQL_DSN) {
-    connection = mysql.createConnection(process.env.MYSQL_DSN);
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
     connection = mysql.createConnection({
         database: 'burgers_db',

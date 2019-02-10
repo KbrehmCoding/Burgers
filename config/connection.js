@@ -7,16 +7,16 @@ if (process.env.MYSQL_DSN) {
     connection = mysql.createConnection(process.env.MYSQL_DSN);
 } else {
     connection = mysql.createConnection({
-      database: 'burgers_db',
-      host: 'localhost',
-      password: process.env.MYSQL_PASSWORD,
-      user: process.env.MYSQL_USER,
+        database: 'burgers_db',
+        host: 'localhost',
+        password: process.env.MYSQL_PASSWORD,
+        user: process.env.MYSQL_USER,
     });
 }
 
 connection.connect(error => {
     if (error) {
-        console.error(`error connecting: ${err.stack}`);
+        console.error(`error connecting: ${error.stack}`);
         return;
     }
     console.log(`connected as id ${connection.threadId}`);
